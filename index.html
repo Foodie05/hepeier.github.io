@@ -1,1 +1,608 @@
-<h1>Hello world!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catache - Emotional Pet Raising Game</title>
+    <script src="https://cdn.tailwindcss.com/3.3.3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f9f7f7;
+            color: #4a4a4a;
+        }
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .cat-card {
+            transition: all 0.3s ease;
+        }
+        .cat-card:hover {
+            transform: translateY(-10px);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #a5d8d4;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .thumbnail {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .thumbnail.active {
+            border: 3px solid #a5d8d4;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #a5d8d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 30px;
+        }
+        .story-card {
+            transition: all 0.3s ease;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px 0 rgba(31, 38, 135, 0.2);
+        }
+                .mbti-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://s.coze.cn/image/gZTKVrbnG9Q/" alt="Catache Logo" class="h-12 w-auto">
+                <span class="ml-3 text-2xl font-bold text-gray-700">Catache</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-600 hover:text-mint-500">Home</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-mint-500">About</a>
+                <a href="#characters" class="nav-link text-gray-600 hover:text-mint-500">Characters</a>
+                <a href="#environments" class="nav-link text-gray-600 hover:text-mint-500">Environments</a>
+                <a href="#features" class="nav-link text-gray-600 hover:text-mint-500">Features</a>
+                <a href="#contact" class="nav-link text-gray-600 hover:text-mint-500">Contact</a>
+            </div>
+            <button class="md:hidden text-gray-600 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 bg-gradient-to-b from-white to-mint-50">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">What is Catache?</h1>
+                <p class="text-xl text-gray-600 mb-8">In Catache, cats aren't just pets—they're emotional frequency adjusters helping humans balance their emotions in a futuristic world.</p>
+                <div class="flex">
+                    <button class="btn-hover border-2 border-mint-500 text-mint-500 font-bold py-3 px-6 rounded-full">
+                        Download Now
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <div class="w-full max-w-md mx-auto">
+                    <img id="mainImage" src="https://s.coze.cn/image/OEHpb8MFtpI/" alt="Catache Main Character" class="w-full rounded-lg shadow-lg mb-4 transition-all duration-300">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="thumbnail active" onclick="changeImage('https://s.coze.cn/image/OEHpb8MFtpI/', this)">
+                            <img src="https://s.coze.cn/image/OEHpb8MFtpI/" alt="Thumbnail 1" class="w-full h-24 object-cover rounded-lg">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage('https://s.coze.cn/image/6nvNLU-kdU4/', this)">
+                            <img src="https://s.coze.cn/image/6nvNLU-kdU4/" alt="Thumbnail 2" class="w-full h-24 object-cover rounded-lg">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage('https://s.coze.cn/image/cxWQvrO0NiY/', this)">
+                            <img src="https://s.coze.cn/image/cxWQvrO0NiY/" alt="Thumbnail 3" class="w-full h-24 object-cover rounded-lg">
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -bottom-10 -right-10 w-24 h-24 bg-pink-200 rounded-full opacity-20"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">About The Game</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 起源 -->
+                <div class="story-card">
+                    <img src="https://s.coze.cn/t/E2dADMeV8sA/" alt="Origin Story" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2">起源</h3>
+                        <p class="text-gray-600">2077年，Neo-Tokyo的人们被快节奏生活压得喘不过气，情感失衡成为社会流行病</p>
+                    </div>
+                </div>
+                
+                <!-- 发现 -->
+                <div class="story-card">
+                    <img src="https://s.coze.cn/t/nL9V3g7AUIc/" alt="Discovery Story" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2">发现</h3>
+                        <p class="text-gray-600">科学家Dr. Akira发现流浪猫能发出稳定情绪的α波，这一发现改变了世界</p>
+                    </div>
+                </div>
+                
+                <!-- 进化 -->
+                <div class="story-card">
+                    <img src="https://s.coze.cn/t/R0qIeSnLk7I/" alt="Evolution Story" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2">进化</h3>
+                        <p class="text-gray-600">研发出情感调节项圈，猫咪成为正式的'情绪频率调节师'，帮助人类找回内心平衡</p>
+                    </div>
+                </div>
+                
+                <!-- 使命 -->
+                <div class="story-card">
+                    <img src="https://s.coze.cn/t/DLZRvZg1VUc/" alt="Mission Story" class="w-full h-64 object-cover">
+                    <div class="p-6 bg-white">
+                        <h3 class="text-xl font-bold mb-2">使命</h3>
+                        <p class="text-gray-600">作为新晋调节师，你将与猫咪伙伴一起，治愈城市中疲惫的心灵，重建情感和谐</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Characters Section -->
+     <section id="characters" class="section bg-gray-50">
+        <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-center">MBTI Cat Characters</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- INTJ -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-indigo-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/qXEfJoqNtyA/" alt="INTJ Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">INTJ</h3>
+                    <span class="mbti-badge bg-indigo-100 text-indigo-800">Architect</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Strategic, independent, and highly analytical. This cat prefers solitude and deep thinking.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Intellectual</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Reserved</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Perfectionist</span>
+                </div>
+            </div>
+            
+            <!-- INTP -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/RujVGfPl8a8/" alt="INTP Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">INTP</h3>
+                    <span class="mbti-badge bg-blue-100 text-blue-800">Logician</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Innovative, curious, and logical. This cat loves exploring ideas and solving complex problems.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Inventive</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Absent-minded</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Theoretical</span>
+                </div>
+            </div>
+            
+            <!-- ENTJ -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/UKtcnt3nA3k/" alt="ENTJ Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ENTJ</h3>
+                    <span class="mbti-badge bg-purple-100 text-purple-800">Commander</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Bold, decisive, and natural leader. This cat excels at organizing and mobilizing others.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Charismatic</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Ambitious</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Dominant</span>
+                </div>
+            </div>
+            
+            <!-- ENTP -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-pink-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/QynAEK69srw/" alt="ENTP Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ENTP</h3>
+                    <span class="mbti-badge bg-pink-100 text-pink-800">Debater</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Quick-witted, energetic, and enthusiastic. This cat loves intellectual challenges and debates.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Innovative</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Argumentative</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Resourceful</span>
+                </div>
+            </div>
+            
+            <!-- INFJ -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-green-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/pSV3_l2HSf8/" alt="INFJ Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">INFJ</h3>
+                    <span class="mbti-badge bg-green-100 text-green-800">Advocate</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Insightful, principled, and compassionate. This cat seeks meaning and connection in everything.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Idealistic</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Empathetic</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Mystical</span>
+                </div>
+            </div>
+            
+            <!-- INFP -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-teal-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/EutEH3R7IiQ/" alt="INFP Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">INFP</h3>
+                    <span class="mbti-badge bg-teal-100 text-teal-800">Mediator</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Creative, kind, and idealistic. This cat values authenticity and personal growth.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Poetic</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Sensitive</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Romantic</span>
+                </div>
+            </div>
+            
+            <!-- ENFJ -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-yellow-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/14l7opxi6fA/" alt="ENFJ Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ENFJ</h3>
+                    <span class="mbti-badge bg-yellow-100 text-yellow-800">Protagonist</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Charismatic, empathetic, and inspiring. This cat naturally motivates and uplifts others.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Persuasive</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Supportive</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Encouraging</span>
+                </div>
+            </div>
+            
+            <!-- ENFP -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-orange-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/oxy13pTnkgI/" alt="ENFP Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ENFP</h3>
+                    <span class="mbti-badge bg-orange-100 text-orange-800">Campaigner</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Enthusiastic, creative, and sociable. This cat sees life as full of exciting possibilities.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Energetic</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Optimistic</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Spontaneous</span>
+                </div>
+            </div>
+            
+            <!-- ISTJ -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/VEwRPJHA6CQ/" alt="ISTJ Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ISTJ</h3>
+                    <span class="mbti-badge bg-gray-100 text-gray-800">Logistician</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Practical, responsible, and detail-oriented. This cat values tradition and order.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Reliable</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Organized</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Traditional</span>
+                </div>
+            </div>
+            
+            <!-- ISFJ -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-red-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/qPD8Y6GHlb0/" alt="ISFJ Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ISFJ</h3>
+                    <span class="mbti-badge bg-red-100 text-red-800">Defender</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Warm, considerate, and protective. This cat is always ready to help others.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Nurturing</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Loyal</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Practical</span>
+                </div>
+            </div>
+            
+            <!-- ESTJ -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/er-v-ZsTi1o/" alt="ESTJ Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ESTJ</h3>
+                    <span class="mbti-badge bg-blue-100 text-blue-800">Executive</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Efficient, outgoing, and organized. This cat excels at managing people and projects.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Decisive</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Dependable</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Traditional</span>
+                </div>
+            </div>
+            
+            <!-- ESFJ -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-purple-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/apHncpw54RY/" alt="ESFJ Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ESFJ</h3>
+                    <span class="mbti-badge bg-purple-100 text-purple-800">Consul</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Sociable, caring, and cooperative. This cat thrives on harmony and helping others.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Warm</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Responsible</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Popular</span>
+                </div>
+            </div>
+            
+            <!-- ISTP -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-green-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/2uLVns3yQvw/" alt="ISTP Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ISTP</h3>
+                    <span class="mbti-badge bg-green-100 text-green-800">Virtuoso</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Bold, practical, and experimental. This cat loves taking things apart to see how they work.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Mechanical</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Independent</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Risk-taker</span>
+                </div>
+            </div>
+            
+            <!-- ISFP -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-pink-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/IFUsODZPVpY/" alt="ISFP Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ISFP</h3>
+                    <span class="mbti-badge bg-pink-100 text-pink-800">Adventurer</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Gentle, sensitive, and artistic. This cat lives in the present moment and enjoys beauty.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Artistic</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Modest</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Spontaneous</span>
+                </div>
+            </div>
+            
+            <!-- ESTP -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-yellow-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/-ZeDFux7aBc/" alt="ESTP Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ESTP</h3>
+                    <span class="mbti-badge bg-yellow-100 text-yellow-800">Entrepreneur</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Energetic, perceptive, and daring. This cat thrives on action and immediate results.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Energetic</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Persuasive</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Impulsive</span>
+                </div>
+            </div>
+            
+            <!-- ESFP -->
+            <div class="glassmorphism p-4 card-hover">
+                <div class="w-full h-48 bg-orange-100 rounded-lg mb-4 flex items-center justify-center">
+                    <img src="https://s.coze.cn/image/2-2iulyTBJU/" alt="ESFP Cat" class="h-full object-cover rounded-lg">
+                </div>
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-bold text-lg">ESFP</h3>
+                    <span class="mbti-badge bg-orange-100 text-orange-800">Entertainer</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Spontaneous, enthusiastic, and sociable. This cat loves being the center of attention.</p>
+                <div class="flex flex-wrap gap-1">
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Playful</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Charming</span>
+                    <span class="text-xs px-2 py-1 bg-gray-100 rounded-full">Dramatic</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Environments Section -->
+    <section id="environments" class="section bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">Game Environments</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="cat-card bg-gray-50 p-6 rounded-lg shadow-md">
+                    <img src="https://s.coze.cn/image/OEHpb8MFtpI/" alt="Neon City" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-bold mb-2">Neon City</h3>
+                    <p class="text-gray-600">A futuristic metropolis where towering skyscrapers meet holographic billboards, creating a dazzling urban jungle for your feline companions.</p>
+                </div>
+                <div class="cat-card bg-gray-50 p-6 rounded-lg shadow-md">
+                    <img src="https://s.coze.cn/image/6nvNLU-kdU4/" alt="Zen Garden" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-bold mb-2">Zen Garden</h3>
+                    <p class="text-gray-600">A tranquil oasis of floating islands and cherry blossoms, designed to help both cats and humans find their inner peace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">Game Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Emotional Bonding</h3>
+                    <p>Develop deep connections with your feline companions through interactive care routines.</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Unique Gameplay</h3>
+                    <p>Experience innovative gameplay mechanics that blend pet care with emotional regulation.</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Immersive World</h3>
+                    <p>Explore a beautifully crafted futuristic world where cats and humans coexist in harmony.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-mint-500 text-gray-600">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-16">Contact Us</h2>
+            <div class="max-w-md mx-auto bg-white text-gray-800 p-8 rounded-lg shadow-lg">
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="name">Name</label>
+                        <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mint-500">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="email">Email</label>
+                        <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mint-500">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2" for="message">Message</label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mint-500"></textarea>
+                    </div>
+                    <button type="button" class="btn-hover border-2 border-mint-500 w-full bg-mint-500 hover:bg-mint-600 text-gray-600 font-bold py-3 px-6 rounded-lg transition duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center">
+                        <img src="https://s.coze.cn/image/gZTKVrbnG9Q/" alt="Catache Logo" class="h-10 w-auto">
+                        <span class="ml-3 text-xl font-bold">Catache</span>
+                    </div>
+                    <p class="mt-2 text-gray-400">© 2024 Catache. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-400 text-sm">
+                <p>页面内容均由 AI 生成，仅供参考</p>
+                <p class="mt-1">created by <a href="https://space.coze.cn" class="text-mint-400 hover:underline">coze space</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function changeImage(src, element) {
+            // Update main image
+            document.getElementById('mainImage').src = src;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
